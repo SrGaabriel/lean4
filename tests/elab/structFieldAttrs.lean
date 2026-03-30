@@ -1,4 +1,5 @@
 -- Tests for attributes on structure fields.
+-- Attributes on fields are applied to the generated projection functions.
 
 import Lean
 
@@ -13,7 +14,7 @@ structure Foo where
 structure Baz where
   @[inline] compute : Nat → Nat
 
-/-! ### @[reducible] on a class field -/
+/-! ### @[reducible] on a class field (class projections are semireducible by default) -/
 
 class MyClass (α : Type) where
   @[reducible] default : α
@@ -25,10 +26,10 @@ structure WithDefault where
 
 /-! ### Verify attributes were applied to projections -/
 
-#eval do
-  let env ← Lean.getEnv
-  unless Lean.Linter.isDeprecated env ``Foo.x do
-    throw "Foo.x should be deprecated"
-  unless Lean.Linter.isDeprecated env ``WithDefault.x do
-    throw "WithDefault.x should be deprecated"
-  return "ok"
+/-- info: true -/
+#guard_msgs in
+#eval Lean.Linter.isDeprecated (← Lean.getEnv) ``Foo.x
+
+/-- info: true -/
+#guard_msgs in
+#eval Lean.Linter.isDeprecated (← Lean.getEnv) ``WithDefault.x
