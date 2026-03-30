@@ -6,7 +6,7 @@ import Lean
 /-! ### @[deprecated] on a field -/
 
 structure Foo where
-  @[deprecated] x : Nat
+  @[deprecated y (since := "2025-04-30")] x : Nat
   y : Bool
 
 /-! ### @[inline] on a field -/
@@ -22,7 +22,7 @@ class MyClass (α : Type) where
 /-! ### Field with default -/
 
 structure WithDefault where
-  @[deprecated] x : Nat := 42
+  @[deprecated "Stop!" (since := "2025-04-30")] x : Nat := 42
 
 /-! ### Verify attributes were applied to projections -/
 
