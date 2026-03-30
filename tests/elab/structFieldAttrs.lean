@@ -28,8 +28,8 @@ structure WithDefault where
 
 /-- info: true -/
 #guard_msgs in
-#eval Lean.Linter.isDeprecated (← Lean.getEnv) ``Foo.x
+#eval do return Lean.Linter.isDeprecated (← Lean.getEnv) ``Foo.x
 
 /-- info: true -/
 #guard_msgs in
-#eval Lean.Linter.isDeprecated (← Lean.getEnv) ``WithDefault.x
+#eval do return Lean.Linter.isDeprecated (← Lean.getEnv) ``WithDefault.x
