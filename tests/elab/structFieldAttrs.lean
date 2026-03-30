@@ -27,6 +27,8 @@ structure WithDefault where
 
 #eval do
   let env ← Lean.getEnv
-  guard (Lean.Linter.isDeprecated env ``Foo.x)
-  guard (Lean.Linter.isDeprecated env ``WithDefault.x)
+  unless Lean.Linter.isDeprecated env ``Foo.x do
+    throw "Foo.x should be deprecated"
+  unless Lean.Linter.isDeprecated env ``WithDefault.x do
+    throw "WithDefault.x should be deprecated"
   return "ok"
