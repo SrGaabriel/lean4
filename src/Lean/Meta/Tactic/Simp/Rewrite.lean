@@ -12,6 +12,7 @@ public import Lean.Meta.Tactic.Simp.Arith
 public import Lean.Meta.Tactic.Simp.Attr
 public import Lean.Meta.BinderNameHint
 import Lean.Meta.WHNF
+public import Lean.Meta.HasAssignableMVar
 public section
 namespace Lean.Meta.Simp
 /--
