@@ -6,7 +6,7 @@ import Lean
 /-! ### @[deprecated] on a field -/
 
 structure Foo where
-  @[deprecated y (since := "2025-04-30")] x : Nat
+  @[deprecated "Use y instead!" (since := "2025-04-30")] x : Nat
   y : Bool
 
 /-! ### @[inline] on a field -/
